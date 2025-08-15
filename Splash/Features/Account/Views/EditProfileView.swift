@@ -16,11 +16,11 @@ struct EditProfileView: View {
     @State private var email: String
     @State private var bio: String
 
-    init(account: AccountModel) {
-        self.username = account.username
-        self.name = account.name
-        self.email = account.email
-        self.bio = account.bio ?? ""
+    init(account: AccountModel?) {
+        self.username = account?.username ?? ""
+        self.name = account?.name ?? ""
+        self.email = account?.email ?? ""
+        self.bio = account?.bio ?? ""
     }
 
     var body: some View {
@@ -35,8 +35,27 @@ struct EditProfileView: View {
                 Section("About") {
                     TextField("Bio", text: $bio)
                 }
+
+                Button(action: {
+                    accountViewModel.logout()
+                }) {
+                    Text("Sign out").frame(maxWidth: .infinity)
+                }
+                .foregroundStyle(.red)
             }
         }
         .navigationTitle("Edit Profile")
     }
+}
+
+#Preview {
+    let account = AccountModel(
+        username: "diaz",
+        name: "Diaz",
+        email: "diaz",
+        totalLikes: 0,
+        totalPhotos: 0,
+        totalCollections: 0
+    )
+    EditProfileView(account: account)
 }

@@ -11,10 +11,11 @@ struct AccountModel {
     let username: String
     let name: String
     let email: String
-    var totalLikes: Int
-    let totalPhotos: Int
-    let totalCollections: Int
     let bio: String?
+
+    var totalLikes: Int
+    var totalPhotos: Int
+    var totalCollections: Int
 
     init(
         username: String,
@@ -40,5 +41,21 @@ struct AccountModel {
 
     mutating func decreaseTotalLikes() {
         totalLikes -= 1
+    }
+
+    mutating func increaseTotalPhotos() {
+        totalPhotos += 1
+    }
+
+    mutating func decreaseTotalPhotos() {
+        totalPhotos -= 1
+    }
+
+    mutating func increaseTotalCollections() {
+        totalCollections += 1
+    }
+
+    mutating func decreaseTotalCollections() {
+        totalCollections -= 1
     }
 }

@@ -36,6 +36,7 @@ struct AccountDetailView: View {
     @EnvironmentObject private var accountViewModel: AccountViewModel
 
     @State private var selectedTab: TabSelection = .photos
+    @State private var isLoading: Bool = false
 
     var body: some View {
         NavigationStack {
@@ -54,7 +55,7 @@ struct AccountDetailView: View {
 
                         NavigationLink(
                             destination: EditProfileView(
-                                account: accountViewModel.account!
+                                account: accountViewModel.account
                             )
                         ) {
                             Text("Edit Profile")
@@ -67,11 +68,9 @@ struct AccountDetailView: View {
                         }
                         .padding(.top, 2)
                     }
-                    Button("Logout") {
-                        accountViewModel.logout()
-                    }
                     Spacer()
                 }
+                .padding(.horizontal, 24)
                 .frame(maxWidth: .infinity)
                 HStack {
                     VStack {
@@ -121,10 +120,20 @@ struct AccountDetailView: View {
                         )
                     }
                     .padding(.vertical, 10)
+                    if isLoading {
+                        ProgressView()
+                            .progressViewStyle(CircularProgressViewStyle())
+                            .padding(.bottom, 10)
+                            .transition(.scale.combined(with: .opacity))
+                    }
                     Divider()
                     TabView(selection: $selectedTab) {
-                        UserPhotosTabView().tag(TabSelection.photos)
-                        UserLikedPhotosTabView().tag(TabSelection.likedPhotos)
+                        UserPhotosTabView(isLoading: $isLoading).tag(
+                            TabSelection.photos
+                        )
+                        UserLikedPhotosTabView(isLoading: $isLoading).tag(
+                            TabSelection.likedPhotos
+                        )
                         UserCollectionsTabView().tag(TabSelection.collections)
                     }
                     .tabViewStyle(.page(indexDisplayMode: .never))
@@ -133,4 +142,13 @@ struct AccountDetailView: View {
             .padding(.top, 20)
         }
     }
+}
+
+#Preview {
+    let accountViewModel = AccountViewModel(
+        authService: AuthService.shared,
+        accountService: AccountService.shared
+    )
+    AccountDetailView()
+        .environmentObject(accountViewModel)
 }
