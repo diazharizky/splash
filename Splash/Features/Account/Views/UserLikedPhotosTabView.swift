@@ -11,6 +11,7 @@ struct UserLikedPhotosTabView: View {
     @EnvironmentObject private var userLikedPhotosViewModel:
         UserLikedPhotosViewModel
     @EnvironmentObject private var accountViewModel: AccountViewModel
+
     @Binding var isLoading: Bool
 
     init(isLoading: Binding<Bool>) {
@@ -22,7 +23,7 @@ struct UserLikedPhotosTabView: View {
             ScrollView {
                 LazyVStack {
                     ForEach($userLikedPhotosViewModel.photos) { $photo in
-                        PhotoCardView(photo: $photo, showLikedTag: false)
+                        PhotoCardView(showLikedTag: false, photo: $photo)
                     }
                 }
             }

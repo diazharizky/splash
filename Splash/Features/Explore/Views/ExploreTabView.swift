@@ -19,7 +19,7 @@ struct ExploreTabView: View {
             ScrollView {
                 LazyVStack {
                     ForEach($exploreViewModel.photos) { $photo in
-                        PhotoCardView(photo: $photo, showLikedTag: true)
+                        PhotoCardView(showLikedTag: true, photo: $photo)
                             .onTapGesture(count: 2) {
                                 if accountViewModel.isLoggedIn {
                                     if !photo.likedByUser {

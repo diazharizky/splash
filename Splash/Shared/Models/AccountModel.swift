@@ -13,8 +13,8 @@ struct AccountModel {
     let email: String
     let bio: String?
 
-    var totalLikes: Int
     var totalPhotos: Int
+    var totalLikes: Int
     var totalCollections: Int
 
     init(

@@ -1,0 +1,23 @@
+/* 
+  Localizable.strings
+  Splash
+
+  Created by Magnifico on 17/08/25.
+  
+*/
+
+"TabBarButton.label.explore" = "Explore";
+"TabBarButton.label.search" = "Search";
+"TabBarButton.label.gallery" = "Gallery";
+"TabBarButton.label.account" = "Account";
+
+"AccountDetailView.label.edit_profile" = "Edit Profile";
+"AccountDetailView.label.photos" = "Photos";
+"AccountDetailView.label.likes" = "Likes";
+"AccountDetailView.label.collections" = "Collections";
+
+"UserCollectionsTabView.text.no_collections" = "No collections";
+
+"EditProfileView.label.profile" = "Profile";
+"EditProfileView.label.about" = "About";
+"EditProfileView.label.sign_out" = "Sign out";

@@ -9,6 +9,7 @@ import SwiftUI
 
 struct UserPhotosTabView: View {
     @EnvironmentObject private var userPhotosViewModel: UserPhotosViewModel
+
     @Binding var isLoading: Bool
 
     var body: some View {

@@ -1,0 +1,23 @@
+/* 
+  Localizable.strings
+  Splash
+
+  Created by Magnifico on 17/08/25.
+  
+*/
+
+"TabBarButton.label.explore" = "Jelajah";
+"TabBarButton.label.search" = "Pencarian";
+"TabBarButton.label.gallery" = "Galeri";
+"TabBarButton.label.account" = "Akun";
+
+"AccountDetailView.label.edit_profile" = "Edit Profil";
+"AccountDetailView.label.photos" = "Foto";
+"AccountDetailView.label.likes" = "Disukai";
+"AccountDetailView.label.collections" = "Koleksi";
+
+"UserCollectionsTabView.text.no_collections" = "Tidak ada koleksi";
+
+"EditProfileView.label.profile" = "Profil";
+"EditProfileView.label.about" = "Tentang";
+"EditProfileView.label.sign_out" = "Keluar";

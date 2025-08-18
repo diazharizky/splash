@@ -54,14 +54,17 @@ struct ContentView: View {
         authService: AuthService.shared,
         accountService: AccountService.shared
     )
+    @StateObject private var languageManager = LanguageManager.shared
 
     var body: some View {
         if accountViewModel.isLoggedIn {
             DashboardViewLoggedInWrapper()
                 .environmentObject(accountViewModel)
+                .environmentObject(languageManager)
         } else {
             DashboardViewNotLoggedInWrapper()
                 .environmentObject(accountViewModel)
+                .environmentObject(languageManager)
         }
     }
 }

@@ -34,13 +34,21 @@ private struct TabBarButton: View {
 
 struct AccountDetailView: View {
     @EnvironmentObject private var accountViewModel: AccountViewModel
+    @EnvironmentObject private var languageManager: LanguageManager
 
     @State private var selectedTab: TabSelection = .photos
     @State private var isLoading: Bool = false
 
     var body: some View {
         NavigationStack {
-            VStack {
+            VStack(alignment: .trailing) {
+                Picker("Language", selection: $languageManager.selectedLanguage)
+                {
+                    ForEach(LanguageSelection.allCases, id: \.self) {
+                        Text($0.rawValue).tag($0)
+                    }
+                }
+                .padding(.trailing, 16)
                 HStack(alignment: .center) {
                     Image(systemName: "person.crop.circle")
                         .font(.system(size: 80))
@@ -52,25 +60,27 @@ struct AccountDetailView: View {
                         if let bio = accountViewModel.account?.bio {
                             Text(bio).font(.subheadline)
                         }
-
                         NavigationLink(
                             destination: EditProfileView(
                                 account: accountViewModel.account
                             )
                         ) {
-                            Text("Edit Profile")
-                                .font(.system(size: 14))
-                                .foregroundStyle(.white)
-                                .padding(.vertical, 10)
-                                .padding(.horizontal, 12)
-                                .background(.blue)
-                                .clipShape(RoundedRectangle(cornerRadius: 8))
+                            Text(
+                                languageManager.tr(
+                                    "AccountDetailView.label.edit_profile"
+                                )
+                            )
+                            .font(.system(size: 14))
+                            .foregroundStyle(.white)
+                            .padding(.vertical, 10)
+                            .padding(.horizontal, 12)
+                            .background(.blue)
+                            .clipShape(RoundedRectangle(cornerRadius: 8))
                         }
                         .padding(.top, 2)
                     }
                     Spacer()
                 }
-                .padding(.horizontal, 24)
                 .frame(maxWidth: .infinity)
                 HStack {
                     VStack {
@@ -78,13 +88,19 @@ struct AccountDetailView: View {
                             .font(
                                 .title2
                             )
-                        Text("Photos").font(.system(size: 14))
+                        Text(
+                            languageManager.tr("AccountDetailView.label.photos")
+                        )
+                        .font(.system(size: 14))
                     }
                     .frame(maxWidth: .infinity)
                     VStack {
                         Text(String(accountViewModel.account?.totalLikes ?? 0))
                             .font(.title2)
-                        Text("Likes").font(.system(size: 14))
+                        Text(
+                            languageManager.tr("AccountDetailView.label.likes")
+                        )
+                        .font(.system(size: 14))
                     }
                     .frame(maxWidth: .infinity)
                     VStack {
@@ -93,7 +109,12 @@ struct AccountDetailView: View {
                                 accountViewModel.account?.totalCollections ?? 0
                             )
                         ).font(.title2)
-                        Text("Collections").font(.system(size: 14))
+                        Text(
+                            languageManager.tr(
+                                "AccountDetailView.label.collections"
+                            )
+                        )
+                        .font(.system(size: 14))
                     }
                     .frame(maxWidth: .infinity)
                 }

@@ -10,11 +10,14 @@ import SwiftUI
 struct UserCollectionsTabView: View {
     @EnvironmentObject private var userCollectionsViewModel:
         UserCollectionsViewModel
+    @EnvironmentObject private var languageManager: LanguageManager
 
     var body: some View {
         VStack {
             Spacer()
-            Text("No collections")
+            Text(
+                languageManager.tr("UserCollectionsTabView.text.no_collections")
+            )
             Spacer()
         }
     }

@@ -9,6 +9,8 @@ import SwiftUI
 
 struct EditProfileView: View {
     @EnvironmentObject private var accountViewModel: AccountViewModel
+    @EnvironmentObject private var languageManager: LanguageManager
+
     @Environment(\.dismiss) private var dismiss
 
     @State private var username: String
@@ -26,20 +28,26 @@ struct EditProfileView: View {
     var body: some View {
         NavigationStack {
             List {
-                Section("Profile") {
+                Section(
+                    languageManager.tr("EditProfileView.label.profile")
+                ) {
                     TextField("Username", text: $username)
                     TextField("Name", text: $name)
                     TextField("Email", text: $email)
                 }
 
-                Section("About") {
+                Section(
+                    languageManager.tr("EditProfileView.label.about")
+                ) {
                     TextField("Bio", text: $bio)
                 }
 
                 Button(action: {
                     accountViewModel.logout()
                 }) {
-                    Text("Sign out").frame(maxWidth: .infinity)
+                    Text(
+                        languageManager.tr("EditProfileView.label.sign_out")
+                    ).frame(maxWidth: .infinity)
                 }
                 .foregroundStyle(.red)
             }

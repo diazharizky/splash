@@ -7,9 +7,7 @@
 
 import Foundation
 
-protocol HomeViewModelProtocol {
-
-}
+protocol HomeViewModelProtocol {}
 
 @MainActor
 final class HomeViewModel: HomeViewModelProtocol, ObservableObject {

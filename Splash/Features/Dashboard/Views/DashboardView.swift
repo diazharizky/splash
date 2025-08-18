@@ -17,6 +17,8 @@ private struct TabBarButton: View {
     let label: String
     let tab: TabSelection
 
+    @EnvironmentObject private var languageManager: LanguageManager
+
     @Binding var currentActiveTab: TabSelection
 
     var body: some View {
@@ -26,7 +28,7 @@ private struct TabBarButton: View {
             )
             .font(.system(size: 21))
             .frame(minHeight: 26)
-            Text(label).font(.system(size: 13))
+            Text(languageManager.tr(label)).font(.system(size: 13))
         }
         .foregroundColor(currentActiveTab == tab ? .blue : .gray)
         .frame(maxWidth: .infinity)
@@ -62,7 +64,7 @@ struct DashboardView: View {
                     TabBarButton(
                         icon: "door.right.hand.closed",
                         activeIcon: "door.right.hand.open",
-                        label: "Explore",
+                        label: "TabBarButton.label.explore",
                         tab: .explore,
                         currentActiveTab: $currentActiveTab
                     )
@@ -70,7 +72,7 @@ struct DashboardView: View {
                     TabBarButton(
                         icon: "magnifyingglass",
                         activeIcon: "sparkle.magnifyingglass",
-                        label: "Search",
+                        label: "TabBarButton.label.search",
                         tab: .search,
                         currentActiveTab: $currentActiveTab
                     )
@@ -78,7 +80,7 @@ struct DashboardView: View {
                     TabBarButton(
                         icon: "photo.on.rectangle",
                         activeIcon: "photo.on.rectangle.angled.fill",
-                        label: "Gallery",
+                        label: "TabBarButton.label.gallery",
                         tab: .gallery,
                         currentActiveTab: $currentActiveTab
                     )
@@ -86,7 +88,7 @@ struct DashboardView: View {
                     TabBarButton(
                         icon: "person.crop.rectangle.fill",
                         activeIcon: "person.text.rectangle.fill",
-                        label: "Account",
+                        label: "TabBarButton.label.account",
                         tab: .account,
                         currentActiveTab: $currentActiveTab
                     )

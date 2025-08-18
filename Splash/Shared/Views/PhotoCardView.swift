@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct PhotoCardView: View {
-    @Binding var photo: PhotoModel
-
     let showLikedTag: Bool
+
+    @Binding var photo: PhotoModel
 
     var body: some View {
         VStack {
